@@ -5,3 +5,4 @@ djangorestframework==3.14.0
 psycopg2==2.9.5  # (if using PostgreSQL)
 pytz==2024.1
 requests==2.31.0  # (if making HTTP requests)
+channels==4.0.0  # Or the latest stable version
