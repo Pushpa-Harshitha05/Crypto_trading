@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-nmar4b&n9m*k^=6me&@55+04bm1@h-!-3y^en+%zm(fnq225vh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['crypto-trading-n6pw.onrender.com', '127.0.0.1', 'localhost']
 
 ASGI_APPLICATION = 'crypto_trading.asgi.application'
 
