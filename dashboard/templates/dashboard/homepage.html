@@ -1,0 +1,122 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Trading Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: #38bdf8;
+    }
+
+    p.lead {
+      font-size: 1.2em;
+      color: #94a3b8;
+    }
+
+    #crypto-prices {
+      background-color: #1e293b;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      color: #38bdf8;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 10px 0;
+      border-bottom: 1px solid #334155;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+
+    strong {
+      color: #facc15;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Welcome to the Crypto Trading Dashboard!</h1>
+    <p class="lead">This dashboard displays real-time crypto market data via WebSocket.</p>
+  </div>
+
+  <div id="crypto-prices">
+    <!-- Real-time crypto data will be displayed here -->
+    <p>Loading crypto data...</p>
+  </div>
+
+  <script>
+    const socket = new WebSocket('ws://' + window.location.host + '/ws/crypto_prices/');
+
+    socket.onopen = function (e) {
+      console.log('WebSocket connected!');
+      socket.send(JSON.stringify({ 'message': 'Hello Server!' }));
+    };
+
+
+    socket.onmessage = function (e) {
+
+      console.log('Message received from server:', e.data);
+
+      // const data = JSON.parse(e.data);
+      // const message = data['message'];
+
+      // console.log(message);
+
+      // let html = "<h2>Live Crypto Prices:</h2><ul>";
+
+      // for (let key in message) {
+      //   const coin = message[key];
+      //   html += `<li>
+      //     <strong>${key}</strong>: 
+      //     Price: $${coin.current_price} | 
+      //     Market Cap: $${coin.market_cap} | 
+      //     24h Volume: $${coin.total_volume} | 
+      //     24h Change: ${coin.price_change_percentage_24h}%
+      //   </li>`;
+      // }
+
+      // html += "</ul>";
+
+      // document.getElementById('crypto-prices').innerHTML = html;
+    };
+
+    socket.onclose = function (e) {
+      console.error('WebSocket closed unexpectedly');
+    };
+  </script>
+
+</body>
+
+</html>
